@@ -2,7 +2,7 @@
 cd C:\GenevaAgent
 Write-Host "Execution Started $Date"  -ForegroundColor Yellow
 Remove-Item ".\LaunchAgent.bat" -Verbose
-$url1 = "https://corestorageoeahq.blob.core.windows.net/share/LaunchAgent.txt"
+$url1 = "https://github.com/v-saduv/Scripts/blob/main/LaunchAgent.txt"
 $output1 = "C:\GenevaAgent\LaunchAgent.bat"
 Import-Module BitsTransfer
 Start-BitsTransfer -Source $url1 -Destination $output1

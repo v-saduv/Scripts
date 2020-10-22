@@ -1,0 +1,22 @@
+set MonitoringAgentExeName=MonAgentManager.exe
+:CheckIfMonitoringIsRunning
+FOR /F %%x IN ('tasklist /NH /FI "IMAGENAME eq %MonitoringAgentExeName%"') DO IF %%x == %MonitoringAgentExeName% goto MonitoringIsRunning
+echo Not running
+goto CheckIfMonitoringIsrunning
+:MonitoringIsRunning
+echo Running
+REM sleep for 60 seconds for the mon agentmanager to initialize the registry and put correct path in place
+timeout 300
+set MONITORING_DATA_DIRECTORY=%LocalAppData%\Monitoring
+set AZSECPACK_DISABLED_FEATURES=AsmEventDriven,AsmUserGroup,AsmKernelInventory,AsmSWInventory,NetIsoScanner,WDATP,ProcessInvestigator,CodeIntegrity,AppLocker,AzCertInstaller,Audit,Antimalware
+set MONITORING_TENANT=%USERNAME%
+set MONITORING_ROLE=FTMigAzSPLog
+set MONITORING_ROLE_INSTANCE=%COMPUTERNAME%
+set MONITORING_GCS_ENVIRONMENT=DiagnosticsPROD
+set MONITORING_GCS_ACCOUNT=FTMigAzSPLogs
+set MONITORING_GCS_NAMESPACE=FTMigAzSPLog
+set MONITORING_GCS_REGION=East US
+set MONITORING_GCS_THUMBPRINT=bf1ea954d2235e2de0b86046a85ce1f2a8fd6e06
+set MONITORING_GCS_CERTSTORE=LOCAL_MACHINE\MY
+set MONITORING_CONFIG_VERSION=1.3
+%MonAgentClientLocation%\MonAgentClient.exe -useenv

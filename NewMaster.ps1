@@ -10,8 +10,8 @@ $Sub_Context_Id=(Get-AzContext).Subscription | Select -ExpandProperty Id
 Write-Host "Selected Sub $Sub_Context_Name" -ForegroundColor Yellow
 
 ### Child Script Location
-###[String]$ChildScriptPath=Read-Host -Prompt "Enter Child Script Path like e.g. D:\FolderName\childscript.ps1"
-$ChildScriptPath=""
+[String]$ChildScriptPath=Read-Host -Prompt "Enter Child Script Path like e.g. D:\FolderName\childscript.ps1"
+###$ChildScriptPath=""
 Write-Host "Selected ChildScriptPath Path $ChildScriptPath" -ForegroundColor Yellow
 
 ### VMs
